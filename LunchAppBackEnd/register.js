@@ -2,20 +2,19 @@ function register(){
     var getUserName = document.registerForm.User.value;
     var getUserPassword = document.registernForm.Password.value;
     var getUserRepeatPassword = document.registernForm.repeatPassword.value;
-    var jsonObj = JSON.stringify(data);
-
-
-
-
-    var file = "C:\Users\felix.risen\Desktop\LunchApp\LunchAppBackEnd\TempDB.json";
-    file.open("w");
-    file.write(jsonObj);
-    file.close();
-
-    var saveToDB = require("fs");
+ //var jsonObj = JSON.stringify(data);
     var data = {
         name: getUserName,
         password: getUserPassword,
-    }
-    var jsonObj = JSON.stringify(data);
+    }  
+    
+    var jsonObj = JSON.parse(data);
+    var fs = require("fs");
+    var file = "./TempDB.json";
+
+    fs.appendFile(file,jsonObj, function
+        (err){
+            if(err) throw err;
+            console.log("Updated db" + data);
+    });
 }
